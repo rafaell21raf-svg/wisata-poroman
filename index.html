@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Siska Eatery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8ef;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(20, 20, 20, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #ff8c32;
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 13px;
+        }
+
+        nav a:hover {
+            color: #ff8c32;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.72)),
+                url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 25px 50px;
+        }
+
+        .hero-content {
+            color: white;
+            animation: muncul 1.2s ease forwards;
+        }
+
+        .hero small {
+            color: #ff9b45;
+            font-size: 15px;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin: 15px 0;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #eee;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff7a18;
+            color: white;
+            padding: 14px 27px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+            box-shadow: 0 8px 25px rgba(255,122,24,.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.04);
+            background: #ff923e;
+        }
+
+        /* ================= SECTION ================= */
+
+        section {
+            padding: 90px 22px;
+        }
+
+        .judul {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .judul small {
+            color: #ff7a18;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .judul h2 {
+            font-size: 35px;
+            margin-top: 8px;
+        }
+
+        /* ================= MENU ================= */
+
+        .menu-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            transition: .4s;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .menu-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .menu-info {
+            padding: 18px;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 7px;
+        }
+
+        .menu-info p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .harga {
+            color: #ff6f00;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            background: #202020;
+            color: white;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .contact-box p {
+            margin: 15px 0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        /* ================= ANIMASI ================= */
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= HP ================= */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 16px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            nav a {
+                font-size: 11px;
+                margin-left: 8px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+
+            .judul h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">SISKA EATERY</div>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">Tentang</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <small>WELCOME TO</small>
+
+            <h1>SISKA EATERY</h1>
+
+            <p>
+                Rasa enak, harga bersahabat.
+            </p>
+
+            <a href="#menu" class="btn">
+                Lihat Menu
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section id="menu">
+
+        <div class="judul">
+
+            <small>OUR MENU</small>
+
+            <h2>Menu Favorit</h2>
+
+        </div>
+
+
+        <div class="menu-container">
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Ayam Geprek Sambal Matah</h3>
+                    <p>Ayam crispy dengan sambal matah segar.</p>
+                    <div class="harga">Rp18.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Mie Ayam Pedas</h3>
+                    <p>Mie gurih dengan topping ayam dan sambal.</p>
+                    <div class="harga">Rp15.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Beef Burger</h3>
+                    <p>Beef juicy dengan sayuran segar.</p>
+                    <div class="harga">Rp22.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Kentang Crispy</h3>
+                    <p>Kentang renyah cocok untuk teman santai.</p>
+                    <div class="harga">Rp12.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Nasi Goreng Spesial</h3>
+                    <p>Nasi goreng dengan bumbu khas Siska Eatery.</p>
+                    <div class="harga">Rp17.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Es Teh Manis</h3>
+                    <p>Teh manis dingin yang menyegarkan.</p>
+                    <div class="harga">Rp5.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Es Coklat</h3>
+                    <p>Minuman coklat creamy dan dingin.</p>
+                    <div class="harga">Rp10.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Roti Bakar Keju Coklat</h3>
+                    <p>Roti panggang dengan keju dan coklat.</p>
+                    <div class="harga">Rp13.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Udang Crispy</h3>
+                    <p>Udang goreng renyah dengan saus spesial.</p>
+                    <div class="harga">Rp20.000</div>
+                </div>
+            </div>
+
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1553787499-6f7e5a7e6b5d?auto=format&fit=crop&w=800&q=80">
+
+                <div class="menu-info">
+                    <h3>Strawberry Milk</h3>
+                    <p>Susu strawberry manis dan creamy.</p>
+                    <div class="harga">Rp12.000</div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="judul">
+
+            <small>TENTANG KAMI</small>
+
+            <h2>Siska Eatery</h2>
+
+        </div>
+
+        <p>
+            Siska Eatery hadir untuk menyajikan makanan dan minuman
+            yang enak dengan harga yang tetap bersahabat.
+            Cocok untuk makan sendiri, bersama teman,
+            maupun bersama orang tersayang.
+        </p>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+        <div class="judul">
+
+            <small>CONTACT</small>
+
+            <h2>Hubungi Kami</h2>
+
+        </div>
+
+        <div class="contact-box">
+
+            <p>📍 Alamat: Bandung</p>
+
+            <p>🕐 Jam Buka: 10.00 - 22.00</p>
+
+            <p>📱 WhatsApp: 082285895907</p>
+
+            <a href="#" class="btn">
+                Pesan Sekarang
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 Siska Eatery — All Rights Reserved.
+
+    </footer>
+
+
+    <!-- JAVASCRIPT ANIMASI -->
+
+    <script>
+
+        const cards = document.querySelectorAll(".menu-card");
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.15
+        });
+
+
+        cards.forEach((card, index) => {
+
+            card.style.transitionDelay = (index * 0.08) + "s";
+
+            observer.observe(card);
+
+        });
+
+    </script>
+
+</body>
+</html>
